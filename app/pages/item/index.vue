@@ -15,8 +15,12 @@ const pagination = computed(() => {
 const getIconUrl = (url?: string | number) => new URL(`${url}.png`, import.meta.env.VITE_ASSETS_BASE_URL).href
 // const getIconUrl = (url?: string | number) => `/${url}.png`
 
-const filter = ref('')
-const request = computed(() => filter.value.trim().toLowerCase())
+const search = computed(() => {
+  const cookie = useSearchMemory('items')
+  return cookie.value
+})
+
+const request = computed(() => search.value.text.trim().toLowerCase())
 
 const total = computed(() => itemScript.value.rows.filter(item => String(item[12]).toLowerCase().includes(request.value) || String(item[0]).toLowerCase().includes(request.value)))
 
@@ -30,16 +34,6 @@ watch(total, (values) => {
 
 <template>
   <section class="flex flex-col w-full min-h-dvh">
-    <section class="flex items-center justify-center gap-2 bg-neutral-900 p-2 outline outline-neutral-800 top-0 sticky">
-      <input
-        v-model="filter"
-        type="text"
-        spellcheck="false"
-        autocomplete="false"
-        class="border border-neutral-800 size-full p-2 text-center rounded-md transition-colors outline outline-transparent hover:outline-neutral-800"
-      >
-    </section>
-
     <section
       class="grid gap-2 p-2 grow place-content-start"
       :style="{ 'grid-template-columns': 'repeat(auto-fill, minmax(48px, 1fr))' }"
