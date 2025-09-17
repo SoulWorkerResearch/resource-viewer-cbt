@@ -4,7 +4,6 @@ const [state, toggle] = useToggle()
 const elementRef = useTemplateRef<HTMLDivElement>('elementRef')
 
 onClickOutside(elementRef, () => {
-  console.log('click')
   if (state.value) {
     toggle()
   }
