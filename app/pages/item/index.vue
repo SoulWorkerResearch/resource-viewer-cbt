@@ -13,7 +13,6 @@ const pagination = computed(() => {
 })
 
 const getIconUrl = (url?: string | number) => new URL(`${url}.png`, import.meta.env.VITE_ASSETS_BASE_URL).href
-// const getIconUrl = (url?: string | number) => `/${url}.png`
 
 const search = computed(() => {
   const cookie = useSearchMemory('items')
