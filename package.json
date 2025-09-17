@@ -1,0 +1,41 @@
+{
+  "name": "resource-viewer-cbt",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "nuxi.upgrade": "nuxi upgrade"
+  },
+  "type": "module",
+  "private": false,
+  "author": "Resource Viewer",
+  "license": "WTFPL",
+  "homepage": "https://github.com/SoulWorkerResearch/resource-viewer-cbt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SoulWorkerResearch/resource-viewer-cbt.git"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "@nuxt/eslint": "^1.9.0",
+    "@nuxt/icon": "^2.0.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@pinia/nuxt": "^0.11.2",
+    "@tailwindcss/vite": "^4.1.13",
+    "@vueuse/nuxt": "^13.9.0",
+    "eslint": "^9.35.0",
+    "nuxt": "^4.1.2",
+    "pinia": "^3.0.3",
+    "tailwindcss": "^4.1.13",
+    "vue": "^3.5.21",
+    "vue-router": "^4.5.1"
+  }
+}

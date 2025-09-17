@@ -1,0 +1,46 @@
+# https://github.com/actions/deploy-pages#usage
+name: Deploy to GitHub Pages
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      # Pick your own package manager and build script
+      - run: bun install
+      - name: Create .env file
+        run: |
+          echo "VITE_API_BASE_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> .env
+          echo "VITE_ASSETS_BASE_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> .env
+          echo "NUXT_APP_BASE_URL=/${{ github.event.repository.name }}/" >> .env
+          echo "NUXT_PUBLIC_SITE_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> .env
+      - run: bun run generate
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./.output/public
+  # Deployment job
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    # Deploy to the github_pages environment
+    environment:
+      name: github_pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

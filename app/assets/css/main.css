@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-main: 'Noto Sans JP', sans-serif;
+  --animate-wiggle: wiggle 7s ease-in-out infinite;
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-14deg); }
+    50% { transform: rotate(14deg); }
+  }
+}
+
+body {
+  @apply bg-neutral-900;
+  @apply text-neutral-300;
+  @apply font-main;
+  /* @apply p-2; */
+  @apply overflow-x-hidden
+}
