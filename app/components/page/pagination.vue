@@ -12,7 +12,7 @@ const search = computed(() => {
 })
 
 const max = computed(() => Math.floor(pagination.value.total / pagination.value.limit))
-const pages = [{ to: 'item', label: 'Items' }, { to: 'table', label: 'Tables' }]
+const pages = [{ to: '/item', label: 'Items' }, { to: '/table', label: 'Tables' }]
 </script>
 
 <template>
